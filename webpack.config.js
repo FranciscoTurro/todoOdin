@@ -11,7 +11,7 @@ module.exports = {
     ],
   },
   entry: {
-    index: "./src/index.js",
+    index: "./src/modules/index.js",
   },
   devtool: "inline-source-map",
   plugins: [
@@ -29,12 +29,10 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-
         use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-
         type: "asset/resource",
       },
     ],
