@@ -1,9 +1,10 @@
-const Todo = (title, description, dueDate, checked) => {
+const Todo = (title, description, dueDate, checked, project) => {
   return {
     title,
     description,
     dueDate,
     checked,
+    project,
   };
 };
 
