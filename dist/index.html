@@ -9,14 +9,32 @@
     <title>todo</title>
   </head>
   <body>
-    <label for="title">Title</label>
-    <input type="text" id="title" />
-    <label for="title">Description</label>
-    <input type="text" id="description" />
-    <label for="date">Date</label>
-    <input type="date" id="date" />
-    <label for="project">Project</label>
-    <input type="text" id="project" />
-    <button class="test">ASDASD</button>
+    <div id="content">
+      <button class="modalButton">Pop modal</button>
+    </div>
+
+    <div id="modalContainer">
+      <div class="modal">
+        <p>Add to the list</p>
+        <input
+          type="text"
+          name="description"
+          id="description"
+          required
+          placeholder="Description"
+          autocomplete="off"
+        />
+        <input type="date" name="date" id="date" required autocomplete="off" />
+        <input
+          type="text"
+          name="project"
+          id="project"
+          required
+          placeholder="Project"
+          autocomplete="off"
+        />
+        <button class="test">Create a new to do</button>
+      </div>
+    </div>
   </body>
 </html>

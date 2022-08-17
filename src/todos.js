@@ -1,6 +1,5 @@
-const Todo = (title, description, dueDate, checked, project) => {
+const Todo = (description, dueDate, checked, project) => {
   return {
-    title,
     description,
     dueDate,
     checked,
@@ -8,4 +7,6 @@ const Todo = (title, description, dueDate, checked, project) => {
   };
 };
 
-export { Todo };
+const todos = [];
+
+export { Todo, todos };
