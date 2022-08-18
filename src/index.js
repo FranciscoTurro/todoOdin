@@ -24,11 +24,13 @@ const showarrayinconsole = () => {
   });
 };
 
+let i = 0;
 const drawTodo = (desc, date) => {
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todoDiv");
   const checkboxDiv = document.createElement("input");
   checkboxDiv.setAttribute("type", "checkbox");
+  checkboxDiv.classList.add(i);
   const descriptionDiv = document.createElement("div");
   descriptionDiv.textContent = desc;
   const dateDiv = document.createElement("div");
@@ -39,10 +41,18 @@ const drawTodo = (desc, date) => {
   todoDiv.appendChild(dateDiv);
 
   content.appendChild(todoDiv);
+
+  checkboxDiv.addEventListener("click", (e) => {
+    console.log(todos[parseInt(e.target.classList)]);
+  });
+  i++;
 };
 
 const names = [];
 const projectsCreator = (project) => {
+  if (project == "") {
+    return;
+  }
   //idea is good but fuck off idk
   if (names.find((e) => e === project)) {
     return;
