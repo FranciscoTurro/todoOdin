@@ -7,14 +7,17 @@ const desc = document.getElementById("description");
 const date = document.getElementById("date");
 const project = document.getElementById("project");
 const content = document.getElementById("content");
+const sidebar = document.getElementById("sidebar");
+const datalist = document.getElementById("datalist");
 
 test.addEventListener("click", () => {
   todos.push(Todo(desc.value, date.value, false, project.value));
   showarrayinconsole();
   drawTodo(desc.value, date.value);
   projectsCreator(project.value);
+  datalistCompletion();
 });
-//puedo hacer un array que se llame nombres, guarda los nombres de todos los projectos. foreach if element == nombre o element == nombre con la primera letra uppercase entonces hacemos algo
+
 const showarrayinconsole = () => {
   todos.forEach((element) => {
     console.log(element);
@@ -38,25 +41,23 @@ const drawTodo = (desc, date) => {
   content.appendChild(todoDiv);
 };
 
+const names = [];
 const projectsCreator = (project) => {
   //idea is good but fuck off idk
-  const names = [];
-
-  const isFound = names.some((element) => {
-    if (element == project) {
-      return true;
-    }
-    return false;
-  });
-
-  if (isFound == false) {
+  if (names.find((e) => e === project)) {
+    return;
+  } else {
     names.push(project);
     const button = document.createElement("button");
     button.textContent = project;
-    content.appendChild(button);
+    sidebar.appendChild(button);
   }
-  if (isFound == true) {
-    alert(2);
-    return;
-  }
+};
+
+const datalistCompletion = () => {
+  names.forEach(function (item) {
+    var option = document.createElement("option");
+    option.value = item;
+    datalist.appendChild(option);
+  });
 };

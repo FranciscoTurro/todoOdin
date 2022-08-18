@@ -9,6 +9,8 @@
     <title>todo</title>
   </head>
   <body>
+    <div id="sidebar"></div>
+
     <div id="content">
       <button class="modalButton">Pop modal</button>
     </div>
@@ -31,8 +33,9 @@
           id="project"
           required
           placeholder="Project"
-          autocomplete="off"
+          list="datalist"
         />
+        <datalist id="datalist"></datalist>
         <button class="test">Create a new to do</button>
       </div>
     </div>
