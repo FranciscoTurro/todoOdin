@@ -1,8 +1,8 @@
-import { Todo, todos } from "./todos.js";
+import { changeCheckedTodo, Todo, todos } from "./todos.js";
 import * as modal from "./modal";
-let today = new Date().toISOString().slice(0, 10);
 
-const test = document.querySelector(".test");
+const newTodo = document.querySelector(".newTodo");
+const debug = document.querySelector(".debug");
 const desc = document.getElementById("description");
 const date = document.getElementById("date");
 const project = document.getElementById("project");
@@ -10,19 +10,18 @@ const content = document.getElementById("content");
 const sidebar = document.getElementById("sidebar");
 const datalist = document.getElementById("datalist");
 
-test.addEventListener("click", () => {
+newTodo.addEventListener("click", () => {
   todos.push(Todo(desc.value, date.value, false, project.value));
-  showarrayinconsole();
   drawTodo(desc.value, date.value);
   projectsCreator(project.value);
   datalistCompletion();
 });
 
-const showarrayinconsole = () => {
+debug.addEventListener("click", () => {
   todos.forEach((element) => {
     console.log(element);
   });
-};
+});
 
 let i = 0;
 const drawTodo = (desc, date) => {
@@ -43,6 +42,7 @@ const drawTodo = (desc, date) => {
   content.appendChild(todoDiv);
 
   checkboxDiv.addEventListener("click", (e) => {
+    changeCheckedTodo(parseInt(e.target.classList));
     console.log(todos[parseInt(e.target.classList)]);
   });
   i++;
