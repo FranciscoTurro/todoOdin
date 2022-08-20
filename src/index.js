@@ -15,6 +15,9 @@ newTodo.addEventListener("click", () => {
   drawTodo();
   projectsCreator(project.value);
   datalistCompletion();
+  description.value = "";
+  date.value = "";
+  project.value = "";
 });
 
 debug.addEventListener("click", () => {
@@ -57,16 +60,54 @@ const projectsCreator = (project) => {
   } else {
     names.push(project);
     const button = document.createElement("button");
+    button.classList.add("projBtn");
     button.textContent = project;
     sidebar.appendChild(button);
+    button.addEventListener("click", () => {
+      content.innerHTML = "";
+      projectTest(button.textContent);
+    });
   }
 };
 
 const datalistCompletion = () => {
+  datalist.innerHTML = "";
   names.forEach(function (item) {
     var option = document.createElement("option");
     option.value = item;
     datalist.appendChild(option);
+  });
+};
+
+const projectTest = (project) => {
+  todos.forEach((element) => {
+    if (element.project == project) {
+      drawTodoOne(element);
+    } else {
+      return;
+    }
+  });
+};
+
+const drawTodoOne = (todo) => {
+  const todoDiv = document.createElement("div");
+  todoDiv.classList.add("todoDiv");
+  const checkboxDiv = document.createElement("input");
+  checkboxDiv.setAttribute("type", "checkbox");
+  checkboxDiv.classList.add();
+  const descriptionDiv = document.createElement("div");
+  descriptionDiv.textContent = todo.description;
+  const dateDiv = document.createElement("div");
+  dateDiv.textContent = todo.dueDate;
+
+  todoDiv.appendChild(checkboxDiv);
+  todoDiv.appendChild(descriptionDiv);
+  todoDiv.appendChild(dateDiv);
+  content.appendChild(todoDiv);
+
+  checkboxDiv.addEventListener("click", (e) => {
+    changeCheckedTodo(parseInt(e.target.classList));
+    e.target.parentNode.classList.toggle("checked");
   });
 };
 
