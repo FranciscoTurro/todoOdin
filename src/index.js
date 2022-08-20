@@ -100,11 +100,11 @@ const drawProjects = (project) => {
 };
 
 const drawTodoOne = (todo) => {
-  //cuando estoy en un proyecto no puedo checkear todos, es porque no tienen la clase con el numero de su posicion en el array asi que no puedo identificarlos
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todoDiv");
   const checkboxDiv = document.createElement("input");
   checkboxDiv.setAttribute("type", "checkbox");
+  checkboxDiv.classList.add(todos.indexOf(todo, 0));
   const descriptionDiv = document.createElement("div");
   descriptionDiv.textContent = todo.description;
   const dateDiv = document.createElement("div");
