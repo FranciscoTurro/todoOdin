@@ -1,13 +1,20 @@
 import { changeCheckedTodo, Todo, todos } from "./todos.js";
 
 const newTodo = document.querySelector(".newTodo");
-const debug = document.querySelector(".debug");
 const desc = document.getElementById("description");
 const date = document.getElementById("date");
 const project = document.getElementById("project");
 const content = document.getElementById("content");
 const sidebar = document.getElementById("sidebar");
 const datalist = document.getElementById("datalist");
+const allTodo = document.querySelector(".allTodo");
+const debug = document.getElementById("debug");
+
+debug.addEventListener("click", () => {
+  todos.forEach((element) => {
+    console.log(element);
+  });
+});
 
 newTodo.addEventListener("click", () => {
   content.innerHTML = "";
@@ -20,10 +27,9 @@ newTodo.addEventListener("click", () => {
   project.value = "";
 });
 
-debug.addEventListener("click", () => {
-  todos.forEach((element) => {
-    console.log(element);
-  });
+allTodo.addEventListener("click", () => {
+  content.innerHTML = "";
+  drawTodo();
 });
 
 const drawTodo = () => {
@@ -37,6 +43,10 @@ const drawTodo = () => {
     descriptionDiv.textContent = todos[i].description;
     const dateDiv = document.createElement("div");
     dateDiv.textContent = todos[i].dueDate;
+    if (todos[i].checked == true) {
+      todoDiv.classList.add("checked");
+      checkboxDiv.checked = true;
+    }
 
     todoDiv.appendChild(checkboxDiv);
     todoDiv.appendChild(descriptionDiv);
@@ -65,7 +75,7 @@ const projectsCreator = (project) => {
     sidebar.appendChild(button);
     button.addEventListener("click", () => {
       content.innerHTML = "";
-      projectTest(button.textContent);
+      drawProjects(button.textContent);
     });
   }
 };
@@ -79,7 +89,7 @@ const datalistCompletion = () => {
   });
 };
 
-const projectTest = (project) => {
+const drawProjects = (project) => {
   todos.forEach((element) => {
     if (element.project == project) {
       drawTodoOne(element);
@@ -90,15 +100,19 @@ const projectTest = (project) => {
 };
 
 const drawTodoOne = (todo) => {
+  //cuando estoy en un proyecto no puedo checkear todos, es porque no tienen la clase con el numero de su posicion en el array asi que no puedo identificarlos
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todoDiv");
   const checkboxDiv = document.createElement("input");
   checkboxDiv.setAttribute("type", "checkbox");
-  checkboxDiv.classList.add();
   const descriptionDiv = document.createElement("div");
   descriptionDiv.textContent = todo.description;
   const dateDiv = document.createElement("div");
   dateDiv.textContent = todo.dueDate;
+  if (todo.checked == true) {
+    todoDiv.classList.add("checked");
+    checkboxDiv.checked = true;
+  }
 
   todoDiv.appendChild(checkboxDiv);
   todoDiv.appendChild(descriptionDiv);
