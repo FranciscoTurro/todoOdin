@@ -5,39 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css" />
     <script defer src="index.js"></script>
     <title>todo</title>
   </head>
   <body>
-    <div id="sidebar">
-      <button class="modalButton nes-btn is-primary">Create a to do</button>
-    </div>
+    <div id="grid">
+      <div id="header">
+        <i class="nes-squirtle"></i>
+        <h1>Game todo</h1>
+      </div>
 
-    <div id="content"></div>
+      <div id="sidebar">
+        <button class="modalButton">Create a to do</button>
+      </div>
 
-    <div id="modalContainer">
-      <div class="modal">
-        <p>Add to the list</p>
-        <input
-          type="text"
-          name="description"
-          id="description"
-          required
-          placeholder="Description"
-          autocomplete="off"
-        />
-        <input type="date" name="date" id="date" required autocomplete="off" />
-        <input
-          type="text"
-          name="project"
-          id="project"
-          required
-          placeholder="Project"
-          list="datalist"
-        />
-        <datalist id="datalist"></datalist>
-        <button type="submit" class="newTodo">Create a new to do</button>
+      <div id="content"></div>
+
+      <div id="modalContainer">
+        <div class="modal">
+          <p>Add to the list</p>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            required
+            placeholder="Description"
+            autocomplete="off"
+          />
+          <input
+            type="date"
+            name="date"
+            id="date"
+            required
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            name="project"
+            id="project"
+            required
+            placeholder="Project"
+            list="datalist"
+          />
+          <datalist id="datalist"></datalist>
+          <button type="submit" class="newTodo">Create a new to do</button>
+        </div>
       </div>
     </div>
   </body>
