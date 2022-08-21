@@ -7,14 +7,8 @@ const project = document.getElementById("project");
 const content = document.getElementById("content");
 const sidebar = document.getElementById("sidebar");
 const datalist = document.getElementById("datalist");
-const allTodo = document.querySelector(".allTodo");
-const debug = document.getElementById("debug");
 
-debug.addEventListener("click", () => {
-  todos.forEach((element) => {
-    console.log(element);
-  });
-});
+let buttonFlag = false;
 
 newTodo.addEventListener("click", () => {
   content.innerHTML = "";
@@ -25,11 +19,6 @@ newTodo.addEventListener("click", () => {
   description.value = "";
   date.value = "";
   project.value = "";
-});
-
-allTodo.addEventListener("click", () => {
-  content.innerHTML = "";
-  drawTodo();
 });
 
 const drawTodo = () => {
@@ -62,6 +51,18 @@ const drawTodo = () => {
 
 const names = [];
 const projectsCreator = (project) => {
+  if (buttonFlag == false) {
+    buttonFlag = true;
+    const all = document.createElement("button");
+    all.classList.add("allTodo");
+    all.textContent = "All to dos";
+    sidebar.appendChild(all);
+    all.addEventListener("click", () => {
+      content.innerHTML = "";
+      drawTodo();
+    });
+  }
+
   if (project == "") {
     return;
   }
