@@ -26,9 +26,11 @@ const drawTodo = () => {
   for (let i = 0; i < todos.length; i++) {
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todoDiv");
+
     const checkboxDiv = document.createElement("input");
     checkboxDiv.setAttribute("type", "checkbox");
     checkboxDiv.classList.add(i);
+
     const descriptionDiv = document.createElement("div");
     descriptionDiv.textContent = todos[i].description;
     const dateDiv = document.createElement("div");
@@ -38,9 +40,12 @@ const drawTodo = () => {
       checkboxDiv.checked = true;
     }
 
+    const info = document.createElement("div");
+    info.classList.add("infoDiv");
     todoDiv.appendChild(checkboxDiv);
-    todoDiv.appendChild(descriptionDiv);
-    todoDiv.appendChild(dateDiv);
+    info.appendChild(descriptionDiv);
+    info.appendChild(dateDiv);
+    todoDiv.appendChild(info);
     content.appendChild(todoDiv);
 
     checkboxDiv.addEventListener("click", (e) => {
