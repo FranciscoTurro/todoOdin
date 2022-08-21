@@ -1,4 +1,5 @@
 import { changeCheckedTodo, Todo, todos } from "./todos.js";
+import "nes.css/css/nes.min.css";
 
 const newTodo = document.querySelector(".newTodo");
 const desc = document.getElementById("description");
