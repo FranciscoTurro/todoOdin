@@ -29,12 +29,13 @@ const drawTodo = () => {
 
     const checkboxDiv = document.createElement("input");
     checkboxDiv.setAttribute("type", "checkbox");
-    checkboxDiv.classList.add(i);
+    checkboxDiv.setAttribute("id", i);
 
     const descriptionDiv = document.createElement("div");
     descriptionDiv.textContent = todos[i].description;
     const dateDiv = document.createElement("div");
     dateDiv.textContent = todos[i].dueDate;
+
     if (todos[i].checked == true) {
       todoDiv.classList.add("checked");
       checkboxDiv.checked = true;
@@ -49,7 +50,7 @@ const drawTodo = () => {
     content.appendChild(todoDiv);
 
     checkboxDiv.addEventListener("click", (e) => {
-      changeCheckedTodo(parseInt(e.target.classList));
+      changeCheckedTodo(parseInt(e.target.id));
       e.target.parentNode.classList.toggle("checked");
     });
   }
@@ -57,24 +58,24 @@ const drawTodo = () => {
 
 const names = [];
 const projectsCreator = (project) => {
-  if (buttonFlag == false) {
-    buttonFlag = true;
-    const all = document.createElement("button");
-    all.classList.add("allTodo");
-    all.textContent = "All to dos";
-    sidebar.appendChild(all);
-    all.addEventListener("click", () => {
-      content.innerHTML = "";
-      drawTodo();
-    });
-  }
-
   if (project == "") {
     return;
   }
   if (names.find((e) => e === project)) {
     return;
   } else {
+    if (buttonFlag == false) {
+      buttonFlag = true;
+      const all = document.createElement("button");
+      all.classList.add("allTodo");
+      all.textContent = "All to dos";
+      sidebar.appendChild(all);
+      all.addEventListener("click", () => {
+        content.innerHTML = "";
+        drawTodo();
+      });
+    }
+
     names.push(project);
     const button = document.createElement("button");
     button.classList.add("projBtn");
@@ -121,9 +122,12 @@ const drawTodoOne = (todo) => {
     checkboxDiv.checked = true;
   }
 
+  const info = document.createElement("div");
+  info.classList.add("infoDiv");
   todoDiv.appendChild(checkboxDiv);
-  todoDiv.appendChild(descriptionDiv);
-  todoDiv.appendChild(dateDiv);
+  info.appendChild(descriptionDiv);
+  info.appendChild(dateDiv);
+  todoDiv.appendChild(info);
   content.appendChild(todoDiv);
 
   checkboxDiv.addEventListener("click", (e) => {
