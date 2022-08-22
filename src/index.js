@@ -2,7 +2,7 @@ import { changeCheckedTodo, Todo, todos } from "./todos.js";
 import "nes.css/css/nes.min.css";
 import "./styles.css";
 
-const newTodo = document.querySelector(".newTodo");
+const newTodo = document.getElementById("newTodo");
 const desc = document.getElementById("description");
 const date = document.getElementById("date");
 const project = document.getElementById("project");
@@ -13,7 +13,7 @@ const datalist = document.getElementById("datalist");
 let buttonFlag = false;
 
 newTodo.addEventListener("click", () => {
-  if (description.value.length != 0 && date.value.length != 0) {
+  if (desc.value.length != 0 && date.value.length != 0) {
     content.innerHTML = "";
     todos.push(Todo(desc.value, date.value, false, project.value));
     drawTodo();
@@ -23,7 +23,7 @@ newTodo.addEventListener("click", () => {
     date.value = "";
     project.value = "";
   } else {
-    alert("A to do needs a description and a date");
+    alert("A to-do must have a description and a date");
     return;
   }
 });
