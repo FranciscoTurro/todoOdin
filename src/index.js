@@ -12,14 +12,19 @@ const datalist = document.getElementById("datalist");
 let buttonFlag = false;
 
 newTodo.addEventListener("click", () => {
-  content.innerHTML = "";
-  todos.push(Todo(desc.value, date.value, false, project.value));
-  drawTodo();
-  projectsCreator(project.value);
-  datalistCompletion();
-  description.value = "";
-  date.value = "";
-  project.value = "";
+  if (description.value.length != 0 && date.value.length != 0) {
+    content.innerHTML = "";
+    todos.push(Todo(desc.value, date.value, false, project.value));
+    drawTodo();
+    projectsCreator(project.value);
+    datalistCompletion();
+    description.value = "";
+    date.value = "";
+    project.value = "";
+  } else {
+    alert("A to do needs a description and a date");
+    return;
+  }
 });
 
 const drawTodo = () => {
@@ -67,7 +72,7 @@ const projectsCreator = (project) => {
     if (buttonFlag == false) {
       buttonFlag = true;
       const all = document.createElement("button");
-      all.classList.add("allTodo");
+      all.classList.add("allTodo", "nes-btn", "is-warning");
       all.textContent = "All to dos";
       sidebar.appendChild(all);
       all.addEventListener("click", () => {
@@ -78,7 +83,7 @@ const projectsCreator = (project) => {
 
     names.push(project);
     const button = document.createElement("button");
-    button.classList.add("projBtn");
+    button.classList.add("projBtn", "nes-btn", "is-success");
     button.textContent = project;
     sidebar.appendChild(button);
     button.addEventListener("click", () => {
@@ -117,6 +122,7 @@ const drawTodoOne = (todo) => {
   descriptionDiv.textContent = todo.description;
   const dateDiv = document.createElement("div");
   dateDiv.textContent = todo.dueDate;
+
   if (todo.checked == true) {
     todoDiv.classList.add("checked");
     checkboxDiv.checked = true;

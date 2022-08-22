@@ -11,12 +11,13 @@
   <body>
     <div id="grid">
       <div id="header">
+        <i class="nes-bulbasaur"></i> <i class="nes-charmander"></i>
         <i class="nes-squirtle"></i>
         <h1>Todo games</h1>
       </div>
 
       <div id="sidebar">
-        <button class="modalButton">Create a to do</button>
+        <button class="modalButton nes-btn is-primary">Create a to do</button>
       </div>
       <div id="content-container">
         <h1>To-dos</h1>
@@ -30,27 +31,29 @@
             type="text"
             name="description"
             id="description"
-            required
             placeholder="Description"
             autocomplete="off"
+            class="nes-input is-success"
           />
           <input
             type="date"
             name="date"
             id="date"
-            required
             autocomplete="off"
+            class="nes-input is-success"
           />
           <input
             type="text"
             name="project"
             id="project"
-            required
-            placeholder="Project"
+            placeholder="Project (optional)"
             list="datalist"
+            class="nes-input is-warning"
           />
           <datalist id="datalist"></datalist>
-          <button type="submit" class="newTodo">Create a new to do</button>
+          <button type="submit" class="newTodo nes-btn is-primary">
+            Create a new to do
+          </button>
         </div>
       </div>
     </div>
